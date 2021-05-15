@@ -1,5 +1,5 @@
 
-public class Guy implements Comparable<Guy>{
+public class Guy{
 	private String name;
 	private Integer num;
 	public String getName() {
@@ -18,10 +18,6 @@ public class Guy implements Comparable<Guy>{
 	public Guy(String name,Integer num) {
 		this.num = num;
 		this.name = name;
-	}
-	@Override
-	public int compareTo(Guy o) {
-		return this.getName().compareTo(o.getName());
 	}
 
 }

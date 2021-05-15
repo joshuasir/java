@@ -58,7 +58,7 @@ public class Main {
 					}
 					input.nextLine();
 					}while(updt<0||updt>guys.size());
-					if(updt==0) {
+					if(updt == 0) {
 						break;
 					}else {
 						num = null;
@@ -128,7 +128,7 @@ public class Main {
 		System.out.println("+===============================+");
 	}
 	public void close() {
-		Collections.sort(guys);
+		Collections.sort(guys,(guy1,guy2) -> guy1.getName().compareTo(guy2.getName()));
 		ArrayList<Integer> justNum = new ArrayList<>();
 		for (Guy guy : guys) {
 			justNum.add(guy.getNum());
