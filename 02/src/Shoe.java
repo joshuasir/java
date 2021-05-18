@@ -1,5 +1,3 @@
-import java.util.Date;
-
 public class Shoe {
 	private String category,name,id;
 	public String getCategory() {

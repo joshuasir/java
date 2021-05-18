@@ -1,45 +1,7 @@
-package butkem;
-
 import java.util.Scanner;
 
-public class Main {
-	
-	public Main() {
-		int option;
-		Scanner input = new Scanner(System.in);
-		do {
-		System.out.println("1. Start The Simulation!!");
-		System.out.println("2. Close App");
-		try {
-			option = input.nextInt();
-		} catch (Exception e) {
-			option = 0;
-		}
-		input.nextLine();
-		if(option == 1) {
-			Integer first_num = getNumber("first",input);
-			Integer second_num = getNumber("second",input);
-			
-			dataTable(first_num,second_num);
-			input.nextLine();
-			
-			basicArith(first_num,second_num);
-			input.nextLine();
-			
-			Boolean p1 = getBool("1",input);
-			Boolean p2 = getBool("2",input);
-			
-			logicTable(p1,p2);
-			input.nextLine();
-		}
-		
-		}while(option!=2);
-		
-		input.close();
-		System.out.println("thank you for using the apps!!");
-		
-	}
-	
+public class Controller {
+
 	public void dataTable(Integer first,Integer second) {
 		String format1 = "+%-4s%-13s%-4s|%-2s%-11s%-2s|%-2s%-11s%-2s|%-2s%-13s%-2s|%-4s%-12s%-4s+\n";
 		String format2 = "+%-6s%-13s%-4s|%-8s%-9s%-3s|%-8s%-9s%-3s|%-6s%-11s%-4s|%-15s%-23s%-3s+\n";
@@ -103,8 +65,26 @@ public class Main {
 		return state;
 	}
 	
-	public static void main(String[] args) {
-		new Main();
+	public void menu() {
+		System.out.println("1. Start The Simulation!!");
+		System.out.println("2. Close App");
+	}
+	
+	public void simulation(Scanner input) {
+		Integer first_num = getNumber("first",input);
+		Integer second_num = getNumber("second",input);
+		
+		dataTable(first_num,second_num);
+		input.nextLine();
+		
+		basicArith(first_num,second_num);
+		input.nextLine();
+		
+		Boolean p1 = getBool("1",input);
+		Boolean p2 = getBool("2",input);
+		
+		logicTable(p1,p2);
+		input.nextLine();
 	}
 
 }
