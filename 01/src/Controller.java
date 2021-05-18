@@ -4,21 +4,20 @@ import java.util.Scanner;
 
 public class Controller {
 	Validator v = new Validator();
-	
+	int option;
 	public void update(ArrayList<Guy> guys,Scanner input) {
-		int update;
 		if(!guys.isEmpty()) {
 			do {
 			display(guys);
 			System.out.print("Which praticipant you would like to update [1 - "+ guys.size() +"][0 to exit]?");
 			try {
-				update = input.nextInt();
+				option = input.nextInt();
 			} catch (Exception e) {
-				update=-1;
+				option=-1;
 			}
 			input.nextLine();
-			}while(!v.validOption(update,guys.size()));
-			if(update != 0) {
+			}while(!v.validOption(option,guys.size()));
+			if(option != 0) {
 				Integer num = null;
 				do {
 					System.out.print("Input a number [0 - 100]:");
@@ -28,8 +27,8 @@ public class Controller {
 						System.out.println("Input must be numeric");
 					}
 					input.nextLine();
-				}while(v.validNumber(num));
-				guys.get(update-1).setNum(num);
+				}while(!v.validNumber(num));
+				guys.get(option-1).setNum(num);
 				System.out.println("Update Successful!");
 				
 			}
@@ -37,20 +36,19 @@ public class Controller {
 	}
 	
 	public void delete(ArrayList<Guy> guys,Scanner input) {
-		int delete;
 		if(!guys.isEmpty()) {
 			do {
 			display(guys);
 			System.out.print("Which praticipant you would like to delete [1 - "+ guys.size() +"][0 to exit]?");
 			try {
-				delete = input.nextInt();
+				option = input.nextInt();
 			} catch (Exception e) {
-				delete=-1;
+				option=-1;
 			}
 			input.nextLine();
-			}while(v.validOption(delete, guys.size()));
-			if(delete != 0) {
-				guys.remove(delete-1);
+			}while(!v.validOption(option, guys.size()));
+			if(option != 0) {
+				guys.remove(option-1);
 				System.out.println("Participant successfully removed from event");
 			}
 		}

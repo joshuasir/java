@@ -7,7 +7,7 @@ public class Validator {
 	
 	public boolean validName(String name) {
 		Integer len = name.length();
-		return len>=5 && len<=15;
+		return len.intValue() >= 5 && len.intValue() <= 15;
 	}
 
 }
