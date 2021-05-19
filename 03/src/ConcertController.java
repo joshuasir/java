@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ConcertController {
@@ -7,7 +7,7 @@ public class ConcertController {
 	Integer id;
 	Integer friendId = null;
 	
-	public void menu(ArrayList<Audience> audiences) {
+	public void menu(LinkedList<Audience> audiences) {
 		view(audiences);
 		System.out.println("1. Register New Audience");
 		System.out.println("2. Enter the Concert Hall");
@@ -17,7 +17,7 @@ public class ConcertController {
 		System.out.print("Input :");
 	}
 	
-	public void view(ArrayList<Audience> audiences) {
+	public void view(LinkedList<Audience> audiences) {
 		System.out.println("=====================");
 		System.out.println("FT World Tour Concert");
 		System.out.println("=====================");
@@ -31,8 +31,7 @@ public class ConcertController {
 		System.out.println();
 	}
 	
-	public void add(ArrayList<Audience> audiences,Scanner scan) {
-
+	public void add(LinkedList<Audience> audiences,Scanner scan) {
 		do {
 			System.out.print("Audience Name [2-20 characters]:");
 			name = scan.nextLine();
@@ -69,7 +68,7 @@ public class ConcertController {
 		System.out.println("ADD DATA SUCCESS !!!");
 	}
 	
-	public void search(ArrayList<Audience> audiences,Scanner scan) {
+	public void search(LinkedList<Audience> audiences,Scanner scan) {
 		if(!audiences.isEmpty()) {
 			view(audiences);
 			do {
@@ -88,7 +87,7 @@ public class ConcertController {
 		
 	}
 	
-	public void update(ArrayList<Audience> audiences,Scanner scan) {
+	public void update(LinkedList<Audience> audiences,Scanner scan) {
 		if(!audiences.isEmpty()) {
 			view(audiences);
 			do {
@@ -117,10 +116,9 @@ public class ConcertController {
 			System.out.println("There's no item to update, please insert new data");
 		}
 	}
-	public void pop(ArrayList<Audience> audiences) {
+	public void pop(LinkedList<Audience> audiences) {
 		if(!audiences.isEmpty()) {
-			System.out.println(audiences.get(0).getName() + " enter the concert Hall");
-			audiences.remove(0);
+			System.out.println(audiences.pop().getName() + " enter the concert Hall");
 		}else {
 			System.out.println("Data not found!");
 		}

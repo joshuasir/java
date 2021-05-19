@@ -5,7 +5,7 @@ public class FTConcert {
 	public FTConcert(boolean going) {
 		Scanner scan = new Scanner(System.in);
 		ConcertController cc = new ConcertController();
-		ArrayList<Audience> audiences = new ArrayList<>();
+		LinkedList<Audience> audiences = new LinkedList<>();
 		int option;
 		while(going) {
 			cc.menu(audiences);
@@ -34,7 +34,6 @@ public class FTConcert {
 
 	public static void main(String[] args) {
 		new FTConcert(true);
-
 	}
 
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Validator {
 
@@ -12,7 +12,7 @@ public class Validator {
 	public boolean validId(Integer id) {
 		return id != null && id.intValue()>9999 && id.intValue()<100000;
 	}
-	public boolean existId(Integer id,ArrayList<Audience> audiences) {
+	public boolean existId(Integer id,LinkedList<Audience> audiences) {
 		for (Audience audience : audiences) {
 			if(audience.getId().equals(id)) {
 				return true;
