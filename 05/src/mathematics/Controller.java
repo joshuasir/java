@@ -2,12 +2,9 @@ package mathematics;
 
 import java.util.Scanner;
 
-public class Controller<T extends Number,V extends Number> implements GenericInterface<T, V>{
-	Validator<Double> v = new Validator();
-	
+public class Controller{
+	Validator<Double> v = new Validator<>();
 
-	
-	
 	public void menu() {
 		System.out.println("1. Print elements");
 		System.out.println("2. Calculate cuboid volume");
@@ -33,33 +30,16 @@ public class Controller<T extends Number,V extends Number> implements GenericInt
 		
 	}
 	
-	public void cuboidInt(Scanner scan) {
-		Integer leng,wid,hei;
-
-		do {
-			System.out.print("Input width[>0]:");
-			wid = scan.nextInt();
-			scan.nextLine();
-		}while(!v.validNum(wid.doubleValue()));
-		
-		do {
-			System.out.print("Input length[>0]:");
-			leng = scan.nextInt();
-			scan.nextLine();
-		}while(!v.validNum(leng.doubleValue()));
-		
-		do {
-			System.out.print("Input height[>0]:");
-			hei = scan.nextInt();
-			scan.nextLine();
-		}while(!v.validNum(hei.doubleValue()));
-		
-		GenericClass<Integer> gc = new GenericClass<>(wid,leng,hei);
-		System.out.println("Volume: "+gc.intVolume());
-	}
-	public void cuboidDou(Scanner scan) {
+	
+	public void cuboid(Scanner scan) {
+		String type;
 		Double leng,wid,hei;
-
+		
+		do {
+			subMenuTwo();
+			type = scan.nextLine();
+		}while(!v.validType(type));
+		
 		do {
 			System.out.print("Input width[>0]:");
 			wid = scan.nextDouble();
@@ -78,10 +58,32 @@ public class Controller<T extends Number,V extends Number> implements GenericInt
 			scan.nextLine();
 		}while(!v.validNum(hei));
 		
-		GenericClass<Double> gc = new GenericClass<>(wid,leng,hei);
-		System.out.println("Volume: "+gc.doubleVolume());
+		
+		if(type.equalsIgnoreCase("Double")) {
+			GenericClass<Double,Double> gc = new GenericClass<>(wid,leng,hei);
+			System.out.println("Volume: "+gc.volume());
+		}else {
+			GenericClass<Integer,Integer> gc = new GenericClass<>(wid.intValue(),leng.intValue(),hei.intValue());
+			System.out.println("Volume: "+gc.volume().intValue());
+		}
+	
 	}
 	
+	public void print(Scanner scan) {
+		int opt;
+		subMenuOne();
+		do {
+			opt = scan.nextInt();
+			scan.nextLine();
+		switch(opt) {
+		case 1:
+			printNumbers(scan);
+			break;
+		case 2:
+			printString(scan);
+			break;
+		}}while(!v.validOption(opt, 2));
+	}
 	public void printNumbers(Scanner scan) {
 		Integer[] num = new Integer[3];
 		do {
@@ -123,29 +125,36 @@ public class Controller<T extends Number,V extends Number> implements GenericInt
 		get(str);
 		scan.nextLine();
 	}
-	public <M> void get(M[] item) {
+	public <M extends Object> void get(M[] item) {
 		for (M t : item) {
 			System.out.print(t + " ");
 		}
-		System.out.println("");
+		System.out.print("\nPress any key to continue...");	
+	}
+	public void calculator(Scanner scan) {
+		subMenuThree();
+		Double num1,num2;
+
+		do {
+			System.out.print("Input first number[>0]:");
+			num1 = scan.nextDouble();
+			scan.nextLine();
+		}while(!v.validNum(num1));
+		
+		do {
+			System.out.print("Input second number[>0]:");
+			num2 = scan.nextDouble();
+			scan.nextLine();
+		}while(!v.validNum(num2));
+		
+		GenericClass<Double,Double> gc = new GenericClass<>(0.0,0.0,0.0);
+		
+		System.out.println("Add result: "+ gc.add(num1, num2).intValue());
+		System.out.println("Subtract result: "+ gc.subtract(num1, num2).intValue());
+		System.out.println("Multiple result: "+ gc.multiply(num1, num2).intValue());
+		System.out.println("Divide result: "+ gc.divide(num1, num2).intValue()+"\n");
 		System.out.print("Press any key to continue...");
-	
-	}
-	@Override
-	public Double add(T num1, V num2) {
-		return num1.doubleValue()+num2.doubleValue();
-	}
-	@Override
-	public Double subtract(T num1, V num2) {
-		return num1.doubleValue()-num2.doubleValue();
-	}
-	@Override
-	public Double multiply(T num1, V num2) {
-		return num1.doubleValue()*num2.doubleValue();
-	}
-	@Override
-	public Double divide(T num1, V num2) {
-		return num1.doubleValue()/num2.doubleValue();
+		scan.nextLine();
 	}
 	
 	
